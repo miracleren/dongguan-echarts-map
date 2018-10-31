@@ -1,7 +1,7 @@
 # dongguan-echarts-map
 基于echarts生成的东莞区域图表及广东图表
 
-## 地图上图片数据具体参考echarts,数据结构也是。
+## 地图上图表数据具体参考echarts,数据结构也是。
 ```javascript
 myChart.setOption(option = {
                             visualMap: {
