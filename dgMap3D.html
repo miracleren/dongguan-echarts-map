@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+   <body style="height: 100%; margin: 0">
+       <div id="container" style="height: 100%"></div>
+       <script type="text/javascript" src="js/jquery.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+       <script type="text/javascript" src="js/echarts-gl.min.js"></script>
+       <script type="text/javascript" src="js/dg.json"></script>
+       <script type="text/javascript">
+          var dom = document.getElementById("container");
+          var myChart = echarts.init(dom);
+          var app = {};
+          option = null;
+          myChart.showLoading();
+
+          var newData =[
+                        {name: "长安镇" ,value: "2586"},
+                        {name: "虎门镇" ,value: "6796"},
+                        {name: "厚街镇" ,value: "74"},
+                        {name: "沙田镇" ,value: "11491"},
+                        {name: "麻涌镇" ,value: "25401"},
+                        {name: "中堂镇" ,value: "5991"},
+                        {name: "高埗镇" ,value: "357"},
+                        {name: "万江区" ,value: "303"},
+                        {name: "望牛墩镇" ,value: "3605"},
+                        {name: "洪梅镇" ,value: "5339"},
+                        {name: "道滘镇" ,value: "2186"},
+                        {name: "石碣镇" ,value: "68"},
+                        {name: "石龙镇" ,value: "120"},
+                        {name: "莞城" ,value: "0"},
+                        {name: "南城区" ,value: "341"},
+                        {name: "东城区" ,value: "12365"},
+                        {name: "大岭山镇" ,value: "125"},
+                        {name: "大朗镇" ,value: "1987"},
+                        {name: "寮步镇" ,value: "7487"},
+                        {name: "茶山镇" ,value: "694"},
+                        {name: "东坑镇" ,value: "0"},
+                        {name: "横沥镇" ,value: "2105"},
+                        {name: "石排镇" ,value: "0"},
+                        {name: "企石镇" ,value: "1617"},
+                        {name: "桥头镇" ,value: "0"},
+                        {name: "常平镇" ,value: "4501"},
+                        {name: "黄江镇" ,value: "233"},
+                        {name: "谢岗镇" ,value: "1743"},
+                        {name: "凤岗镇" ,value: "2479"},
+                        {name: "塘厦镇" ,value: "659"},
+                        {name: "樟木头镇" ,value: "0"},
+                        {name: "清溪镇" ,value: "3144"},
+                        {name: "虎门港" ,value: "8"},
+                        {name: "松山湖" ,value: "82"}
+                      ];
+
+           // $.ajax({
+          	// type: "GET",
+          	// url: "http://localhost/data/dg.json",
+          	// dataType: "json",
+          	// success: function(data){
+          	            console.log(dgdata);
+                        myChart.hideLoading();
+                        echarts.registerMap('DG', dgdata);
+                        myChart.setOption(option = {
+                            geo3D: {
+                                 map: 'DG',
+                                 roam: true,
+                                 itemStyle: {
+                                     opacity:0.8,
+                                     borderWidth: 1,
+                                     borderColor: '#000',
+                                 },
+                                 light: { //光照阴影
+                                     main: {
+                                         color: '#8BC34A', //光照颜色
+                                         shadow: false, //是否显示阴影
+                                         intensity: 1.5, //光照强度
+                                         //shadowQuality: 'high', //阴影亮度
+                                         shadow: false, //是否显示阴影
+                                         alpha:55,
+                                         beta:10
+                                     },
+                                     ambient: {
+                                         intensity: 0.6
+                                     }
+                                 }
+                            },
+                            series: [
+                                //柱状图
+                                {
+                                   name: 'bar3D',
+                                   type: "bar3D",
+                                   coordinateSystem: 'geo3D',
+                                   barSize: 2, //柱子粗细
+                                   shading: 'lambert',
+                                   opacity: 0.8,
+                                   bevelSize:0.3,
+                                   label: {
+                                       show: false,
+                                       formatter: '{b}'
+                                   },
+                                   data: [
+                                    {"name": "长安镇","value": [113.75072479248047,22.79327423554599,(Math.random() * 300).toFixed(2)]},
+                                    {"name": "虎门镇","value": [113.68377685546875,22.830617558978773,(Math.random() * 300).toFixed(2)]},
+                                    {"name": "厚街镇","value": [113.67622375488281,22.92045268936839,(Math.random() * 300).toFixed(2)]},
+                                    {"name": "沙田镇","value": [113.5715103149414,22.92962264886695,(Math.random() * 300).toFixed(2)]},
+                                    {"name": "麻涌镇","value": [113.55640411376953,23.04214116137265,(Math.random() * 300).toFixed(2)]},
+                                    {"name": "中堂镇","value": [113.68000030517578,23.110996610073308,(Math.random() * 300).toFixed(2)]},
+                                    {"name": "高埗镇","value": [113.7366485595703,23.101207389714883,(Math.random() * 300).toFixed(2)]},
+                                    {"name": "万江区","value": [113.69270324707031,23.053830119998175,(Math.random() * 300).toFixed(2)]},
+                                    {"name": "望牛墩镇","value": [113.63365173339844,23.048143726317335,(Math.random() * 300).toFixed(2)]},
+                                    {"name": "洪梅镇","value": [113.59588623046874,22.985577557754294,(Math.random() * 300).toFixed(2)]},
+                                    {"name": "道滘镇","value": [113.64875793457031,22.996639345366127,(Math.random() * 300).toFixed(2)]},
+                                    {"name": "石碣镇","value": [113.79638671875,23.10815465187191,(Math.random() * 300).toFixed(2)]},
+                                    {"name": "石龙镇","value": [113.86436462402344,23.111312379493476,(Math.random() * 300).toFixed(2)]},
+                                    {"name": "莞城","value": [113.75106811523438,23.03803398912686,(Math.random() * 300).toFixed(2)]},
+                                    {"name": "南城区","value": [113.72840881347655,22.983049021940193,(Math.random() * 300).toFixed(2)]},
+                                    {"name": "东城区","value": [113.78952026367188,23.019076187293035,(Math.random() * 300).toFixed(2)]},
+                                    {"name": "大岭山镇","value": [113.81767272949219,22.906538462308497,(Math.random() * 300).toFixed(2)]},
+                                    {"name": "大朗镇","value": [113.9285659790039,22.912863288033765,(Math.random() * 300).toFixed(2)]},
+                                    {"name": "寮步镇","value": [113.86505126953125,22.99948365856307,(Math.random() * 300).toFixed(2)]},
+                                    {"name": "茶山镇","value": [113.87947082519531,23.06646569046633,(Math.random() * 300).toFixed(2)]},
+                                    {"name": "东坑镇","value": [113.93714904785156,22.997587456423943,(Math.random() * 300).toFixed(2)]},
+                                    {"name": "横沥镇","value": [113.96255493164061,23.03550643627977,(Math.random() * 300).toFixed(2)]},
+                                    {"name": "石排镇","value": [113.9398956298828,23.091733271320713,(Math.random() * 300).toFixed(2)]},
+                                    {"name": "企石镇","value": [114.04254913330078,23.068992662192883,(Math.random() * 300).toFixed(2)]},
+                                    {"name": "桥头镇","value": [114.08615112304688,23.019076187293035,(Math.random() * 300).toFixed(2)]},
+                                    {"name": "常平镇","value": [114.01371002197266,22.978307889728143,(Math.random() * 300).toFixed(2)]},
+                                    {"name": "黄江镇","value": [114.00272369384766,22.87206297814378,(Math.random() * 300).toFixed(2)]},
+                                    {"name": "谢岗镇","value": [114.16614532470703,22.95681267089113,(Math.random() * 300).toFixed(2)]},
+                                    {"name": "凤岗镇","value": [114.16065216064453,22.729007128653123,(Math.random() * 300).toFixed(2)]},
+                                    {"name": "塘厦镇","value": [114.0823745727539,22.802452780677637,(Math.random() * 300).toFixed(2)]},
+                                    {"name": "樟木头镇","value": [114.08718109130858,22.906854710602367,(Math.random() * 300).toFixed(2)]},
+                                    {"name": "清溪镇","value": [114.17301177978514,22.848336230707222,(Math.random() * 300).toFixed(2)]},
+                                    {"name": "虎门港","value": [113.57623100280762,22.874593586669832,(Math.random() * 300).toFixed(2)]},
+                                    {"name": "松山湖","value": [113.88444900512695,22.902427167370448,(Math.random() * 300).toFixed(2)]}
+                                   ]
+                               }
+                            ]
+                        });
+
+                        myChart.on('click', function (params) {
+                           var cout=params.data.name;
+                           console.log(params);
+                       });
+          // 	         }
+          // });
+       </script>
+   </body>
+</html>

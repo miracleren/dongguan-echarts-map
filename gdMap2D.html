@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+   <body style="height: 100%; margin: 0">
+       <div id="container" style="height: 100%"></div>
+       <script type="text/javascript" src="js/jquery.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+       <script type="text/javascript" src="js/guangdong.js"></script>
+       <script type="text/javascript">
+          var dom = document.getElementById("container");
+          var myChart = echarts.init(dom);
+          var app = {};
+          option = null;
+          myChart.showLoading();
+
+          myChart.hideLoading();
+          // echarts.registerMap('广东', data);
+          myChart.setOption(option = {
+              visualMap: {
+                  left: 'right',
+                  min: 0,
+                  max: 10000,
+                  inRange: {
+                      color: ['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
+                  },
+                  text:['High','Low'],           // 文本，默认为数值文本
+                  calculable: true
+              },
+              series: [
+                  {
+
+                      type: 'map',
+                      roam: true,
+                      map: '广东', 
+                      itemStyle:{
+                          normal:{label:{show:true}},
+                          emphasis:{label:{show:true}}
+                      },
+                      //data:newData
+                      
+                  }
+              ]
+          });
+
+       </script>
+   </body>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript" src="js/echarts.min.js"></script>
+	<script type="text/javascript" src="js/Y3D.js"></script>
+	<script type="text/javascript" src="js/three.min.91.js"></script>
+</head>
+<body>
+<div id="mapContainer"></div>
+</body>
+<script type="text/javascript">
+
+
+var newData =[
+	{name: "长安镇", JOBCNT: 6.208420928309909, DOCNT: 0.1, JOBLINE: "2586", DOCLINE: "0"},
+	{name: "虎门镇", JOBCNT: 16.15291130270462, DOCNT: 0.1, JOBLINE: "6796", DOCLINE: "0"},
+	{name: "厚街镇", JOBCNT: 0.27479626786347, DOCNT: 0.1, JOBLINE: "74", DOCLINE: "0"},
+	{name: "沙田镇", JOBCNT: 27.243025865123425, DOCNT: 0.1, JOBLINE: "11491", DOCLINE: "0"},
+	{name: "麻涌镇", JOBCNT: 60.10000000000001, DOCNT: 0.1, JOBLINE: "25401", DOCLINE: "0"},
+	{name: "中堂镇", JOBCNT: 14.251411361757413, DOCNT: 0.1, JOBLINE: "5991", DOCLINE: "0"},
+	{name: "高埗镇", JOBCNT: 0.9432738868548483, DOCNT: 0.1, JOBLINE: "357", DOCLINE: "0"},
+	{name: "万江区", JOBCNT: 0.815719853549073, DOCNT: 0.1, JOBLINE: "303", DOCLINE: "0"},
+	{name: "望牛墩镇", JOBCNT: 8.615412779024448, DOCNT: 0.1, JOBLINE: "3605", DOCLINE: "0"},
+	{name: "洪梅镇", JOBCNT: 12.711314515176568, DOCNT: 0.1, JOBLINE: "5339", DOCLINE: "0"},
+	{name: "道滘镇", JOBCNT: 5.263576237156017, DOCNT: 0.1, JOBLINE: "2186", DOCLINE: "0"},
+	{name: "石碣镇", JOBCNT: 0.2606235974961616, DOCNT: 0.1, JOBLINE: "68", DOCLINE: "0"},
+	{name: "石龙镇", JOBCNT: 0.3834534073461675, DOCNT: 0.1, JOBLINE: "120", DOCLINE: "0"},
+	{name: "莞城", JOBCNT: 0.1, DOCNT: 0.1, JOBLINE: "0", DOCLINE: "0"},
+	{name: "南城区", JOBCNT: 0.9054800992086927, DOCNT: 0.1, JOBLINE: "341", DOCLINE: "0"},
+	{name: "东城区", JOBCNT: 29.307511515294678, DOCNT: 0.1, JOBLINE: "12365", DOCLINE: "0"},
+	{name: "大岭山镇", JOBCNT: 0.3952639659855911, DOCNT: 0.1, JOBLINE: "125", DOCLINE: "0"},
+	{name: "大朗镇", JOBCNT: 4.793516003306957, DOCNT: 0.1, JOBLINE: "1987", DOCLINE: "0"},
+	{name: "寮步镇", JOBCNT: 17.785130506672967, DOCNT: 0.1, JOBLINE: "7487", DOCLINE: "0"},
+	{name: "茶山镇", JOBCNT: 1.739305539152002, DOCNT: 0.1, JOBLINE: "694", DOCLINE: "0"},
+	{name: "东坑镇", JOBCNT: 0.1, DOCNT: 0.1, JOBLINE: "0", DOCLINE: "0"},
+	{name: "横沥镇", JOBCNT: 5.072245187197354, DOCNT: 0.1, JOBLINE: "2105", DOCLINE: "0"},
+	{name: "石排镇", JOBCNT: 0.1, DOCNT: 0.1, JOBLINE: "0", DOCLINE: "0"},
+	{name: "企石镇", JOBCNT: 3.919534663989607, DOCNT: 0.1, JOBLINE: "1617", DOCLINE: "0"},
+	{name: "桥头镇", JOBCNT: 0.1, DOCNT: 0.1, JOBLINE: "0", DOCLINE: "0"},
+	{name: "常平镇", JOBCNT: 10.731864887209165, DOCNT: 0.1, JOBLINE: "4501", DOCLINE: "0"},
+	{name: "黄江镇", JOBCNT: 0.6503720325971418, DOCNT: 0.1, JOBLINE: "233", DOCLINE: "0"},
+	{name: "谢岗镇", JOBCNT: 4.217160741703083, DOCNT: 0.1, JOBLINE: "1743", DOCLINE: "0"},
+	{name: "凤岗镇", JOBCNT: 5.955674973426243, DOCNT: 0.1, JOBLINE: "2479", DOCLINE: "0"},
+	{name: "塘厦镇", JOBCNT: 1.6566316286760365, DOCNT: 0.1, JOBLINE: "659", DOCLINE: "0"},
+	{name: "樟木头镇", JOBCNT: 0.1, DOCNT: 0.1, JOBLINE: "0", DOCLINE: "0"},
+	{name: "清溪镇", JOBCNT: 7.526479272469588, DOCNT: 0.1, JOBLINE: "3144", DOCLINE: "0"},
+	{name: "虎门港", JOBCNT: 0.11889689382307783, DOCNT: 0.1, JOBLINE: "8", DOCLINE: "0"},
+	{name: "松山湖", JOBCNT: 0.2936931616865478, DOCNT: 0.1, JOBLINE: "82", DOCLINE: "0"},
+];
+
+
+
+var box1Arr={};var box2Arr={};
+map(newData);
+function map(data){ 
+	var c=new Y3D.ComTest({
+        mapJson:'/js/dg.json',
+        container:'mapContainer',
+        radius:80000,
+        cameraX:0,
+        cameraY:150,
+        cameraZ:300,
+        mouseControl:true,
+        backgroundColor:0x012D3A,
+        backgroundOpacity:false,
+        lgDepthBuffer:true,
+        groundImage:'/image/ground.png',
+        groundWidth:550,
+        groundDepth:310,
+        groundColor:0x505050,
+        rotation:true,
+        transparent:true,
+        stats:false,
+        gui:false
+    });
+
+    c.gridVisible=false;
+    c.ahVisible=false;
+    
+
+    c.on('initFinish',function(){
+        c.opacity=0.84;
+        c.color=0x62c34;
+        c.amount=10;//地图厚度
+        c.outlineWidth=0.5;
+ 		c.mouseoverColor = 0x1adeaf;
+ 		c.mouseoverScale=1.09;
+ 		c.outlineWidth=0.3;
+ 		c.opacity = 0.6;
+ 		c.roughness = 0.8;
+ 		c.metalness = 0.2;
+ 		c.bumpScale = 1;
+ 		c.outlineColor = 0x2c8c98
+ 		
+        // c.mouseoverScale=2.0;
+        // c.mouseoverScaleSpeed=500;
+        //
+    });
+
+	//地图块点击事件
+    c.on('mapClick',function(properties,event){
+    	/* var widge=boxArr[properties.name];
+    	widge.height=200; */
+       //alert(properties.name+"街镇名");
+       $("#townName").val('');
+       $("#townName").val(properties.name);
+       clickTime1(true);
+    	getAvgAndAmt();
+       var yz = $("#wryzID").val();
+       if(yz!=''&&yz!=null){
+       		amtAndavgView(yz);
+       }
+    });
+    
+    //叠加立方体
+    var ii=0;
+    
+    c.on('mapAfterRender',function(map,mesh,properties,centerX,centerY,centerZ,mapHeight){
+        if(ii++>1){
+            //return
+        }
+        //return;
+        var dataItem=null;
+        data.forEach(function(item,index){
+            if(properties.name==item.name){
+                dataItem=item;
+                return;
+            }
+
+        })
+        if(dataItem==null){
+            return;
+        }
+       /*  var tooltip1 =''+dataItem.JOBCNT;
+        var tooltip2 =''+dataItem.DOCNT; */
+        var overWidge = new Y3D.Box({
+            width:6,
+            depth:6,
+            height: dataItem.JOBCNT,
+            tooltip: dataItem.JOBLINE,
+            tooltipScaleFactor:0.16,
+            tooltipShow:true,
+            color:0xffffff,
+            bottomColor:0xb4ff,
+            topColor:0x3c46,
+            
+            opacity:0.85,
+            roughness:0.42,
+            metalness:0.43,
+            bumpScale:1
+        });
+        box1Arr[dataItem.name]=overWidge;
+        //overWidge.visible=true;
+        overWidge.visible=true/* dataItem.VISIBLE */;
+        overWidge.component = c;
+        overWidge.init();
+        //overWidge.castShadow = true;
+        overWidge.widgeType='OverWidge';
+        map.add(overWidge);
+        overWidge.position.set(centerX-4, centerY, centerZ);
+        overWidge.rotateX(Math.PI / 2);
+        overWidge.translateY(mapHeight+1);
+        
+        Y3D.GuiTool.addToGui(c.guiPanel,overWidge,'Box1');
+        overWidge = new Y3D.Box({
+            width:6,
+            depth:6,
+            height: dataItem.DOCNT,
+            tooltip: dataItem.DOCLINE,
+            tooltipScaleFactor:0.12,
+            tooltipShow:true,
+            color:0xffffff,
+            bottomColor:0xf5ff34,
+            topColor:0x463b05,
+            opacity:0.75,
+            roughness:0.3,
+            metalness:0.38,
+            bumpScale:1,
+            transparent:true
+        });
+        box2Arr[dataItem.name]=overWidge;
+        //overWidge.visible=false;
+        overWidge.visible=true/* dataItem.VISIBLE */;
+        overWidge.component = c;
+        overWidge.init();
+        //overWidge.castShadow = true;
+        overWidge.widgeType='OverWidge';
+        map.add(overWidge);
+        overWidge.position.set(centerX+4, centerY, centerZ);
+        overWidge.rotateX(Math.PI / 2);
+        overWidge.translateY(mapHeight+1);
+        Y3D.GuiTool.addToGui(c.guiPanel,overWidge,'Box2');
+    });
+    
+    //叠加文本
+    c.on('mapAfterRender',function(map,mesh,properties,centerX,centerY,centerZ,mapHeight) {
+        //return;
+        var dataItem = null;
+        data.forEach(function (item, index) {
+            if (properties.name == item.name) {
+                dataItem = item;
+                return;
+            }
+
+        });
+        if(dataItem==null){
+            return;
+        }
+        var tooltip = dataItem.name;
+        var overWidge = new Y3D.TextPlant({
+            text: tooltip,
+            color:0xffffff
+        });
+        overWidge.component = c;
+        overWidge.init();
+        overWidge.widgeType = 'OverWidge';
+        map.add(overWidge);
+        Y3D.GuiTool.addToGui(c.guiPanel,overWidge,'text');
+        overWidge.rotateX(Math.PI / 2);
+        // overWidge.textPlant.geometry.computeBoundingBox();
+        // var v3=overWidge.textPlant.geometry.boundingBox.getSize();
+        var v3=overWidge.getSize();
+        var scaleFactor=0.15;
+        overWidge.position.set(centerX, centerY-8, centerZ+mapHeight+v3.y*scaleFactor);
+        //overWidge.position.set(-v3.x*scaleFactor/2,mapHeight+v3.y*scaleFactor,0);
+
+        overWidge.textPlant.scale.set(scaleFactor,scaleFactor,1);
+
+    });
+    
+
+    c.on('update',function(dt){
+
+        this.scene.traverse(function(object) {
+            if (object.widgeType == 'OverWidge') {//表示自定义的widge
+                object.update(dt);
+            }
+        });
+
+    });
+    c.render();
+
+}
+
+     
+    
+
+
+
+
+</script>
+</html>

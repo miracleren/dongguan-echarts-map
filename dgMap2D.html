@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+   <body style="height: 100%; margin: 0">
+       <div id="container" style="height: 100%"></div>
+       <script type="text/javascript" src="js/jquery.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+       <script type="text/javascript" src="js/dg.json"></script>
+       <script type="text/javascript">
+          var dom = document.getElementById("container");
+          var myChart = echarts.init(dom);
+          var app = {};
+          option = null;
+          myChart.showLoading();
+
+          var newData =[
+                        {name: "长安镇" ,value: "2586"},
+                        {name: "虎门镇" ,value: "6796"},
+                        {name: "厚街镇" ,value: "74"},
+                        {name: "沙田镇" ,value: "11491"},
+                        {name: "麻涌镇" ,value: "25401"},
+                        {name: "中堂镇" ,value: "5991"},
+                        {name: "高埗镇" ,value: "357"},
+                        {name: "万江区" ,value: "303"},
+                        {name: "望牛墩镇" ,value: "3605"},
+                        {name: "洪梅镇" ,value: "5339"},
+                        {name: "道滘镇" ,value: "2186"},
+                        {name: "石碣镇" ,value: "68"},
+                        {name: "石龙镇" ,value: "120"},
+                        {name: "莞城" ,value: "0"},
+                        {name: "南城区" ,value: "341"},
+                        {name: "东城区" ,value: "12365"},
+                        {name: "大岭山镇" ,value: "125"},
+                        {name: "大朗镇" ,value: "1987"},
+                        {name: "寮步镇" ,value: "7487"},
+                        {name: "茶山镇" ,value: "694"},
+                        {name: "东坑镇" ,value: "0"},
+                        {name: "横沥镇" ,value: "2105"},
+                        {name: "石排镇" ,value: "0"},
+                        {name: "企石镇" ,value: "1617"},
+                        {name: "桥头镇" ,value: "0"},
+                        {name: "常平镇" ,value: "4501"},
+                        {name: "黄江镇" ,value: "233"},
+                        {name: "谢岗镇" ,value: "1743"},
+                        {name: "凤岗镇" ,value: "2479"},
+                        {name: "塘厦镇" ,value: "659"},
+                        {name: "樟木头镇" ,value: "0"},
+                        {name: "清溪镇" ,value: "3144"},
+                        {name: "虎门港" ,value: "8"},
+                        {name: "松山湖" ,value: "82"}
+                      ];
+
+           // $.ajax({
+          	// type: "GET",
+          	// url: "http://localhost/dgmap/js/dg.json",
+          	// dataType: "json",
+          	// success: function(data){
+          	            console.log(dgdata);
+                        myChart.hideLoading();
+                        echarts.registerMap('DG', dgdata);
+                        myChart.setOption(option = {
+                            visualMap: {
+                                left: 'right',
+                                min: 0,
+                                max: 10000,
+                                inRange: {
+                                    color: ['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
+                                },
+                                text:['High','Low'],           // 文本，默认为数值文本
+                                calculable: true
+                            },
+                            series: [
+                                {
+
+                                    type: 'map',
+                                    roam: true,
+                                    map: 'DG', 
+                                    itemStyle:{
+                                        normal:{label:{show:true}},
+                                        emphasis:{label:{show:true}}
+                                    },
+                                    data:newData
+                                    
+                                }
+                            ]
+                        });
+          // 	         }
+          // });
+       </script>
+   </body>
+</html>
