@@ -1,7 +1,7 @@
 # dongguan-echarts-map
 基于echarts生成的东莞区域图表及广东图表
 
-# 地图上图片数据具体参考echarts,数据结构也是。
+## 地图上图片数据具体参考echarts,数据结构也是。
 ```javascript
 myChart.setOption(option = {
                             visualMap: {
@@ -31,13 +31,14 @@ myChart.setOption(option = {
                         });
 ```
 
-# 地图坐标是自己抓取生成的，坐标细化度不大，边角相对多
+## 地图坐标是自己抓取生成的，坐标细化度不大，边角相对多
+地图坐标数据包在文件里。
 
-# 东莞地图2D版热力图
+## 东莞地图2D版热力图
 ![image](https://github.com/miracleren/dongguan-echarts-map/blob/master/pic/pic1.png)
 
-# 东莞地图3D版柱状图
+## 东莞地图3D版柱状图
 ![image](https://github.com/miracleren/dongguan-echarts-map/blob/master/pic/pic2.png)
 
-# 广东地图2D版热力图
+## 广东地图2D版热力图
 ![image](https://github.com/miracleren/dongguan-echarts-map/blob/master/pic/pic3.png)
